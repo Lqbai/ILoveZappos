@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="product"
+            type="android.app.zappos.ilovezappos.models.Product" />
+    </data>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:transitionName="productInfo"
+            bind:imageRes="@{product.thumbnailImageUrl}" />
+
+        <TextView
+            android:id="@+id/brandName"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:layout_below="@+id/imageView"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="left"
+            android:lines="1"
+            android:textSize="30sp"
+            android:text="@{product.brandName}" />
+
+        <TextView
+            android:id="@+id/productName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:layout_below="@+id/brandName"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="left"
+            android:lines="1"
+            android:text="@{product.productName}" />
+
+        <TextView
+            android:id="@+id/originalPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:layout_below="@+id/productName"
+            android:gravity="left"
+            android:layout_marginLeft="10dp"
+            android:maxLines="1"
+            android:text="@{product.originalPrice.equals(product.price) ? null : product.originalPrice}"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:layout_below="@+id/originalPrice"
+            android:gravity="left"
+            android:layout_marginLeft="10dp"
+            android:maxLines="1"
+            android:text="@{product.price}"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/imageButtonShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/like" />
+
+        <ImageView
+            android:id="@+id/imageButtonAddToCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/imageButtonShare"
+            android:src="@drawable/shopping_cart"
+            />
+
+    </RelativeLayout>
+
+
+</layout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools">
+    <data>
+        <variable name="product" type="android.app.zappos.ilovezappos.models.Product"/>
+        <import type="android.view.View" />
+
+        <variable
+            name="clicklistener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <LinearLayout
+        app:onClickListener="@{clicklistener}"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:padding="8dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/thumbnailUrl"
+                android:transitionName="productInfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                bind:imageRes="@{product.thumbnailImageUrl}" />
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:visibility="@{product.thumbnailImageUrl != null ? View.GONE : View.VISIBLE}"
+                />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/brandName"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="left"
+            android:lines="1"
+            android:textSize="15sp"
+            android:text="@{product.brandName}" />
+
+        <TextView
+            android:id="@+id/productName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="left"
+            android:lines="1"
+            android:text="@{product.productName}" />
+
+        <TextView
+            android:id="@+id/originalPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:gravity="left"
+            android:layout_marginLeft="10dp"
+            android:maxLines="1"
+            android:textColor="@{product.getOriginalColor()}"
+            android:text="@{product.getOriginalPrice()}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:gravity="left"
+            android:layout_marginLeft="10dp"
+            android:maxLines="1"
+            android:textColor="@{product.getPriceColor()}"
+            android:text="@{product.price}"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+</layout>
